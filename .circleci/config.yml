@@ -14,7 +14,6 @@ jobs:
           name: install dependencies
           command: |
             python3 -m venv venv
-            ls -la -R
             source venv/bin/activate
             make install
             # Install hadolint
@@ -27,5 +26,5 @@ jobs:
       - run:
           name: run lint
           command: |
-            .venv/bin/activate
+            source venv/bin/activate
             make lint
