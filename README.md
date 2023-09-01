@@ -1,50 +1,83 @@
-<include a CircleCI status badge, here>
+[![CircleCI](https://circleci.com/gh/amitechno/project-ml-microservice-kubernetes.svg?style=svg)](https://circleci.com/gh/amitechno/project-ml-microservice-kubernetes)
 
-## Project Overview
+# Machine Learning Microservice API Project
 
-In this project, you will apply the skills you have acquired in this course to operationalize a Machine Learning Microservice API. 
+## Project Summary
 
-You are given a pre-trained, `sklearn` model that has been trained to predict housing prices in Boston according to several features, such as average rooms in a home and data about highway access, teacher-to-pupil ratios, and so on. You can read more about the data, which was initially taken from Kaggle, on [the data source site](https://www.kaggle.com/c/boston-housing). This project tests your ability to operationalize a Python flask app—in a provided file, `app.py`—that serves out predictions (inference) about housing prices through API calls. This project could be extended to any pre-trained machine learning model, such as those for image recognition and data labeling.
+This project operationalizes a Machine Learning Microservice API that predicts housing prices in Boston based on various features. It utilizes a pre-trained scikit-learn model and deploys it as a Flask-based microservice. The API allows users to make predictions by sending HTTP requests.
 
-### Project Tasks
+## How to Run
 
-Your project goal is to operationalize this working, machine learning microservice using [kubernetes](https://kubernetes.io/), which is an open-source system for automating the management of containerized applications. In this project you will:
-* Test your project code using linting
-* Complete a Dockerfile to containerize this application
-* Deploy your containerized application using Docker and make a prediction
-* Improve the log statements in the source code for this application
-* Configure Kubernetes and create a Kubernetes cluster
-* Deploy a container using Kubernetes and make a prediction
-* Upload a complete Github repo with CircleCI to indicate that your code has been tested
+### 1. Clone the Repository
 
-You can find a detailed [project rubric, here](https://review.udacity.com/#!/rubrics/2576/view).
-
-**The final implementation of the project will showcase your abilities to operationalize production microservices.**
-
----
-
-## Setup the Environment
-
-* Create a virtualenv with Python 3.7 and activate it. Refer to this link for help on specifying the Python version in the virtualenv. 
 ```bash
-python3 -m pip install --user virtualenv
-# You should have Python 3.7 available in your host. 
-# Check the Python path using `which python3`
-# Use a command similar to this one:
-python3 -m virtualenv --python=<path-to-Python3.7> .devops
-source .devops/bin/activate
+git clone https://github.com/amitechno/project-ml-microservice-kubernetes.git
+cd project-ml-microservice-kubernetes
 ```
-* Run `make install` to install the necessary dependencies
 
-### Running `app.py`
+### 2. Linting and Code Quality Check
 
-1. Standalone:  `python app.py`
-2. Run in Docker:  `./run_docker.sh`
-3. Run in Kubernetes:  `./run_kubernetes.sh`
+Before running the application, you should perform linting and code quality checks:
 
-### Kubernetes Steps
+```bash
+# Install linting tools (if not already installed)
+pip install pylint
 
-* Setup and Configure Docker locally
-* Setup and Configure Kubernetes locally
-* Create Flask app in Container
-* Run via kubectl
+# Run linting on the Python scripts
+pylint app.py
+```
+
+### 3. Build Docker Image
+
+Build the Docker image of the application using the provided Dockerfile:
+
+```bash
+docker build -t ml-microservice-app .
+```
+
+### 4. Deploy Using Docker
+
+Deploy the containerized application using Docker:
+
+```bash
+docker run -p 8080:80 ml-microservice-app
+```
+
+### 5. Logging Improvement
+
+If necessary, you can enhance the log statements in the source code for better monitoring and debugging.
+
+### 6. Kubernetes Configuration
+
+Configure Kubernetes and create a Kubernetes cluster. Detailed instructions may be provided in the `kubernetes/` directory.
+
+### 7. Deployment Using Kubernetes
+
+Deploy the Docker container within the Kubernetes cluster using the provided configuration files. Detailed instructions may be provided in the `kubernetes/` directory.
+
+### 8. Continuous Integration
+
+The project is set up with CircleCI for continuous integration. The configuration files for CircleCI can be found in the `.circleci/` directory.
+
+## File Explanation
+
+- `app.py`: The Python Flask application serving predictions through API calls.
+- `Dockerfile`: Configuration file for building a Docker image of the application.
+- `requirements.txt`: List of Python dependencies required to run the application.
+- `.circleci/`: Configuration files for CircleCI to enable continuous integration.
+- `make_prediction.sh`: File to get prdeiction by queryinh ml-app api.
+
+## API Documentation
+
+For detailed API documentation and information on how to make predictions, refer to the project's documentation.
+
+## Acknowledgments
+
+- Kaggle (https://www.kaggle.com/): Source of the housing price prediction dataset.
+- Docker (https://www.docker.com/): Used for containerization.
+- Kubernetes (https://kubernetes.io/): Used for container orchestration.
+- CircleCI (https://circleci.com/): Used for continuous integration and testing.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
