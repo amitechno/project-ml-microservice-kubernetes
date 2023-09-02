@@ -1,0 +1,7 @@
+(.devops) (base) amitsharma@RBS-ADMINs-MacBook-Pro-2 project-ml-microservice-kubernetes % ./run_kubernetes.sh -v   
+pod/app created
+NAME   READY   STATUS    RESTARTS   AGE
+app    0/2     Pending   0          0s
+Forwarding from 127.0.0.1:8000 -> 80
+Forwarding from [::1]:8000 -> 80
+Handling connection for 8000
